@@ -546,7 +546,7 @@ Version 8.0.10
 
 Version 8.0.9
 
-  - WL#11469, Update license header in GPL packages.
+  - WL#11469, Update license personToolbarView in GPL packages.
 
   - Fix for BUG#27247349, WL#11208 : UNIQUE DOES NOT GIVE ERROR EVEN THOUGH IT IS NOT SUPPORTED.
 

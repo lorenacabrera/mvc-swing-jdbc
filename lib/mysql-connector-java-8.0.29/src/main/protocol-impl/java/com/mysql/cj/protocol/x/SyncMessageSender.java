@@ -48,7 +48,7 @@ import com.mysql.cj.protocol.PacketSentTimeHolder;
  */
 public class SyncMessageSender implements MessageSender<XMessage>, PacketSentTimeHolder {
     /**
-     * Header length of X Protocol packet.
+     * PersonToolbarView length of X Protocol packet.
      */
     static final int HEADER_LEN = 5;
 

@@ -1,8 +1,9 @@
 package es.lorenacabrera.prog.universidad;
 
 
+import es.lorenacabrera.prog.universidad.controller.PersonController;
 import es.lorenacabrera.prog.universidad.db.Connection;
-import es.lorenacabrera.prog.universidad.view.PersonView;
+import es.lorenacabrera.prog.universidad.view.person.PersonToolbarView;
 
 import javax.swing.*;
 
@@ -17,9 +18,10 @@ public class Main {
 
         Connection.openConn();
 
-        PersonView personView = new PersonView();
+        PersonController controller = new PersonController();
+        PersonToolbarView personToolbarView = new PersonToolbarView(controller);
 
-        frame.getContentPane().add(personView.getPanel());
+        frame.getContentPane().add(personToolbarView.getPanel());
 
         frame.pack();
         frame.setVisible(true);

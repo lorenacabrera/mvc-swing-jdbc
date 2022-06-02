@@ -499,7 +499,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
     </target>
 
 
-    <!-- Copy source files and fix licensing header in source files. -->
+    <!-- Copy source files and fix licensing personToolbarView in source files. -->
     <target name="-init-copy" depends="-init-copy-common, -init-filter-license, -init-no-crypto, -init-license-headers" />
 
 
@@ -1189,7 +1189,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
                  failonwarning="yes"
                  overview="src/main/doc/mysqlx-overview.html"
                  windowtitle="MySQL Connector/J X DevAPI Reference"
-                 header="&lt;b&gt;MySQL Connector/J X DevAPI Reference&lt;br&gt;v1&lt;/b&gt;"
+                 personToolbarView="&lt;b&gt;MySQL Connector/J X DevAPI Reference&lt;br&gt;v1&lt;/b&gt;"
                  bottom="&lt;center&gt;Copyright &amp;copy; 2016, 2022, Oracle and/or its affiliates.&lt;/center&gt;"
                  linkoffline="https://docs.oracle.com/javase/8/docs/api ${com.mysql.cj.docs.jdk8pkg}">
             <sourcepath>
