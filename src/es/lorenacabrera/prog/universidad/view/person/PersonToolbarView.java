@@ -4,8 +4,7 @@ import es.lorenacabrera.prog.universidad.controller.PersonController;
 
 import javax.swing.*;
 
-public class PersonToolbarView {
-    private JPanel panel;
+public class PersonToolbarView extends JPanel {
     private PersonController controller;
 
     public static final String LIST_BUTTON_NAME = "persons";
@@ -19,7 +18,6 @@ public class PersonToolbarView {
     private JButton updateButton;
 
     public PersonToolbarView(PersonController controller) {
-        panel = new JPanel();
         this.controller = controller;
         addComponentsToPane();
     }
@@ -40,13 +38,9 @@ public class PersonToolbarView {
         deleteButton.addActionListener(controller);
         updateButton.addActionListener(controller);
 
-        panel.add(listButton);
-        panel.add(insertButton);
-        panel.add(deleteButton);
-        panel.add(updateButton);
-    }
-
-    public JPanel getPanel() {
-        return panel;
+        this.add(listButton);
+        this.add(insertButton);
+        this.add(deleteButton);
+        this.add(updateButton);
     }
 }
