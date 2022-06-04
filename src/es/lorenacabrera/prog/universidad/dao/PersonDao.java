@@ -2,9 +2,7 @@ package es.lorenacabrera.prog.universidad.dao;
 
 import es.lorenacabrera.prog.universidad.db.Connection;
 import es.lorenacabrera.prog.universidad.model.Person;
-import es.lorenacabrera.prog.universidad.model.Subject;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
