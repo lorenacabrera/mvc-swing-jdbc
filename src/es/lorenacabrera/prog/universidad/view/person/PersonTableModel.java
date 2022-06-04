@@ -1,48 +1,54 @@
 package es.lorenacabrera.prog.universidad.view.person;
 
-import es.lorenacabrera.prog.universidad.controller.PersonController;
+import es.lorenacabrera.prog.universidad.model.Person;
 
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
+import javax.swing.table.AbstractTableModel;
+import java.util.List;
 
-public class PersonTableModel implements TableModel {
-    private PersonController controller;
-    private static final String[] columnNames = {
-        "id",
-        "nif",
-        "nombre",
-        "apellido 1",
-        "apellido 2",
-        "ciudad",
-        "dirección",
-        "teléfono",
-        "fecha nacimiento",
-        "sexo",
-        "tipo"
-    };
+public class PersonTableModel extends AbstractTableModel {
+    private Object[][] people;
+    private String[] columnNames;
 
-    public PersonTableModel(PersonController controller) {
-        this.controller = controller;
+    public PersonTableModel(List<Person> people, String[] columnNames) {
+        this.columnNames = columnNames;
+        this.people = new Object[people.size()][columnNames.length];
+        int i = 0;
+
+        for (Person person: people) {
+            this.people[i][0] = person.getId();
+            this.people[i][1] = person.getNif();
+            this.people[i][2] = person.getNombre();
+            this.people[i][3] = person.getApellido1();
+            this.people[i][4] = person.getApellido2();
+            this.people[i][5] = person.getCiudad();
+            this.people[i][6] = person.getDireccion();
+            this.people[i][7] = person.getTelefono();
+            this.people[i][8] = person.getFechaNacimiento();
+            this.people[i][9] = person.getSexo();
+            this.people[i][10] = person.getTipo();
+
+            i++;
+        }
     }
 
     @Override
     public int getRowCount() {
-        return controller.findAll().size();
+        return this.people.length;
     }
 
     @Override
     public int getColumnCount() {
-        return columnNames.length;
+        return this.columnNames.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        return columnNames[columnIndex];
+        return this.columnNames[columnIndex];
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return null;
+        return getValueAt(0, columnIndex).getClass();
     }
 
     @Override
@@ -52,21 +58,11 @@ public class PersonTableModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return null;
+        return this.people[rowIndex][columnIndex];
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-
-    }
-
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-
-    }
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-
+        this.people[rowIndex][columnIndex] = aValue;
     }
 }
