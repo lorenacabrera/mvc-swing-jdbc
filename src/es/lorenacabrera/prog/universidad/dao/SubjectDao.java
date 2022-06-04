@@ -50,7 +50,7 @@ public class SubjectDao {
 
         if (subject != null) {
             command = String.format(
-                    "INSERT INTO asignatura (id, nombre, creditos, tipo, curso, cuatrimestre, id_profesor, id_grado) values (%d, %s, %f, %s, %d, %d, %d, %d)",
+                    "INSERT INTO asignatura (id, nombre, creditos, tipo, curso, cuatrimestre, id_profesor, id_grado) values (%d, '%s', %f, '%s', %d, %d, %d, %d)",
                     subject.getId(),
                     subject.getNombre(),
                     subject.getCredito(),
@@ -90,7 +90,42 @@ public class SubjectDao {
     }
 
     public boolean update(Subject subject) {
-        return false;
+        boolean isSuccessful = false;
+        String command;
+        ResultSet resultSet;
+        Subject actualSubject;
+
+        Statement statement = Connection.getStatement();
+        actualSubject = findById(subject.getId());
+
+        if (actualSubject != null) {
+            actualSubject.setCredito(subject.getCredito());
+            actualSubject.setCurso(subject.getCurso());
+            actualSubject.setNombre(subject.getNombre());
+            actualSubject.setGradoId(subject.getGradoId());
+            actualSubject.setProfesorId(subject.getProfesorId());
+            actualSubject.setTipo(subject.getTipo());
+            actualSubject.setCredito(subject.getCredito());
+
+            command = String.format(
+                "UPDATE asignatura SET nombre = '%s', curso = %d, creditos = %d, tipo = '%s', cuatrimestre = %d, id_profesor = %d, id_grado = %d WHERE id = %d",
+                actualSubject.getNombre(),
+                actualSubject.getCurso(),
+                actualSubject.getCredito(),
+                actualSubject.getTipo(),
+                actualSubject.getCustrimestre(),
+                actualSubject.getProfesorId(),
+                actualSubject.getGradoId()
+            );
+
+            try {
+                isSuccessful = statement.executeUpdate(command) > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return isSuccessful;
     }
 
     public Subject findById(Integer id) {

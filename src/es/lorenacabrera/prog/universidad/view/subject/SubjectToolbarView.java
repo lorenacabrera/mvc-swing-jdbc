@@ -2,10 +2,10 @@ package es.lorenacabrera.prog.universidad.view.subject;
 
 import javax.swing.*;
 
-public class PersonToolbarView {
+public class SubjectToolbarView {
     private JPanel pane;
 
-    public PersonToolbarView() {
+    public SubjectToolbarView() {
         this.pane = new JPanel();
     }
 }

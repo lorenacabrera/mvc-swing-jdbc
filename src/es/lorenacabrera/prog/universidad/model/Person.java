@@ -29,6 +29,10 @@ public class Person {
         this.tipo = tipo;
     }
 
+    public Person() {
+
+    }
+
     public Integer getId() {
         return id;
     }
