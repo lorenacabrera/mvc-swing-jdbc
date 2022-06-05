@@ -26,8 +26,8 @@ public class EntryView extends JPanel {
         this.setLayout(borderLayout);
 
         this.headerPane.add(headerLabel);
-        this.centerPane.addTab("Asignatura", new PersonView(personController));
-        this.centerPane.addTab("Persona", new JLabel("Yeah!"));
+        this.centerPane.addTab("Persona", new PersonView(personController));
+        this.centerPane.addTab("Asignatura", new JLabel("Yeah!"));
 
         this.add(headerPane, BorderLayout.PAGE_START);
         this.add(centerPane, BorderLayout.CENTER);
