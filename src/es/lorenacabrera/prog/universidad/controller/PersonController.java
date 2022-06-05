@@ -21,17 +21,21 @@ public class PersonController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case PersonToolbarView.LIST_BUTTON_NAME:
-                System.out.println("Yeah!");
-                break;
             case PersonToolbarView.INSERT_BUTTON_NAME:
                 createAndShowPersonEditGUI();
+                break;
+            case PersonToolbarView.DELETE_BUTTON_NAME:
+                System.out.println("Fuck deletion!");
+                break;
+            case PersonToolbarView.UPDATE_BUTTON_NAME:
+                System.out.println("Fuck update!");
+                break;
             default:
                 System.out.println("Fuck!");
         }
     }
 
-    public void createAndShowPersonEditGUI() {
+    private void createAndShowPersonEditGUI() {
         JDialog dialog = new JDialog();
 
         dialog.getContentPane().add(new PersonEditView().getPanel());

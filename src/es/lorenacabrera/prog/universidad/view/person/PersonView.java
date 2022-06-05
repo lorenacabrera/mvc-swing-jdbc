@@ -43,6 +43,7 @@ public class PersonView extends JPanel {
 
         scrollPane = new JScrollPane();
         table = new JTable(new PersonTableModel(dao.findAll(), columnNames));
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         scrollPane.setViewportView(this.table);
 
         constraints.gridx = 0;

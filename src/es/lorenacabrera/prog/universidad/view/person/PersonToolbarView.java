@@ -8,7 +8,6 @@ import java.awt.*;
 public class PersonToolbarView extends JPanel {
     private PersonController controller;
 
-    public static final String LIST_BUTTON_NAME = "persons";
     public static final String INSERT_BUTTON_NAME = "insert";
     public static final String DELETE_BUTTON_NAME = "delete";
     public static final String UPDATE_BUTTON_NAME = "update";
