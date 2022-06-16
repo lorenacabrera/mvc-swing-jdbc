@@ -7,7 +7,6 @@ import es.lorenacabrera.prog.universidad.dao.PersonDao;
 import es.lorenacabrera.prog.universidad.dao.SubjectDao;
 import es.lorenacabrera.prog.universidad.db.Connection;
 import es.lorenacabrera.prog.universidad.view.EntryView;
-import es.lorenacabrera.prog.universidad.view.person.PersonView;
 
 import javax.swing.*;
 
@@ -24,7 +23,7 @@ public class Main {
 
         PersonController personController = new PersonController(new PersonDao());
         SubjectController subjectController = new SubjectController(new SubjectDao());
-        EntryView entryView = new EntryView(personController);
+        EntryView entryView = new EntryView(personController, subjectController);
         frame.getContentPane().add(entryView);
 
         frame.pack();

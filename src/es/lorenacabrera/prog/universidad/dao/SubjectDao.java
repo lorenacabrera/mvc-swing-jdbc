@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class SubjectDao {
-    public Collection<Subject> findAll() {
+    public List<Subject> findAll() {
         String command = "SELECT * FROM asignatura";
         ResultSet resultSet;
-        Collection<Subject> subjects = new ArrayList();
+        List<Subject> subjects = new ArrayList();
         Subject subject;
 
         Statement statement = Connection.getStatement();

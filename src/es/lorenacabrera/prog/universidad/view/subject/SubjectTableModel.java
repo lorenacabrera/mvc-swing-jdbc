@@ -1,35 +1,53 @@
 package es.lorenacabrera.prog.universidad.view.subject;
 
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
+import es.lorenacabrera.prog.universidad.model.Subject;
 
-public class SubjectTableModel implements TableModel {
+
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import java.util.List;
+
+public class SubjectTableModel extends AbstractTableModel {
     private Object[][] subjects;
     private String[] columnNames;
 
-    public SubjectTableModel(Object[][] subjects, String[] columnNames) {
-        this.subjects = subjects;
+    public SubjectTableModel(List<Subject> subjects, String[] columnNames) {
         this.columnNames = columnNames;
+        this.subjects = new Object[subjects.size()][columnNames.length];
+        int i = 0;
+
+        for(Subject subject:subjects){
+            this.subjects[i][0] = subject.getId();
+            this.subjects[i][1] = subject.getCredito();
+            this.subjects[i][2] = subject.getNombre();
+            this.subjects[i][3] = subject.getCustrimestre();
+            this.subjects[i][4] = subject.getCurso();
+            this.subjects[i][5] = subject.getProfesorId();
+            this.subjects[i][6] = subject.getGradoId();
+            this.subjects[i][7] = subject.getTipo();
+
+            i++;
+        }
     }
 
     @Override
     public int getRowCount() {
-        return 0;
+        return this.subjects.length;
     }
 
     @Override
     public int getColumnCount() {
-        return 0;
+        return this.columnNames.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        return null;
+        return this.columnNames[columnIndex];
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return null;
+        return getValueAt(0, columnIndex).getClass();
     }
 
     @Override
@@ -39,21 +57,11 @@ public class SubjectTableModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return null;
+        return this.subjects[rowIndex][columnIndex];
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-
-    }
-
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-
-    }
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-
+        this.subjects[rowIndex][columnIndex] = aValue;
     }
 }

@@ -79,13 +79,13 @@ public class PersonDao {
         return isSuccessful;
     }
 
-    public boolean remove(Person person) {
+    public boolean remove(Integer id) {
         boolean isSuccessful = false;
         Statement statement = Connection.getStatement();
         String command;
 
-        if (person != null) {
-            command = String.format("DELETE FROM persona WHERE %d", person.getId());
+        if (findById(id) != null) {
+            command = String.format("DELETE FROM persona WHERE %d", id);
 
             try {
                 isSuccessful = statement.executeUpdate(command) > 0;
@@ -100,7 +100,6 @@ public class PersonDao {
     public boolean update(Person person) {
         boolean isSuccessful = false;
         String command;
-        ResultSet resultSet;
         Person actualPerson;
 
         Statement statement = Connection.getStatement();

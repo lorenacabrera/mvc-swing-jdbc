@@ -1,47 +1,47 @@
 package es.lorenacabrera.prog.universidad.controller;
 
 import es.lorenacabrera.prog.universidad.dao.PersonDao;
-import es.lorenacabrera.prog.universidad.model.Person;
 import es.lorenacabrera.prog.universidad.view.person.PersonEditView;
 import es.lorenacabrera.prog.universidad.view.person.PersonToolbarView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class PersonController implements ActionListener {
     private PersonDao dao;
+    private JDialog dialog;
+
     public PersonController(PersonDao dao) {
         this.dao = dao;
     }
-    public List<Person> findAll() {
-        return dao.findAll();
-    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case PersonToolbarView.INSERT_BUTTON_NAME:
-                createAndShowPersonEditGUI();
-                break;
             case PersonToolbarView.DELETE_BUTTON_NAME:
-                System.out.println("Fuck deletion!");
                 break;
-            case PersonToolbarView.UPDATE_BUTTON_NAME:
+            case PersonToolbarView.SHOW_UPDATE_DIALOG:
                 System.out.println("Fuck update!");
                 break;
+            case PersonEditView.CLOSE_EDIT_DIALOG:
+                if (this.dialog.isActive()) {
+                    this.dialog.dispose();
+                }
             default:
                 System.out.println("Fuck!");
         }
     }
 
-    private void createAndShowPersonEditGUI() {
-        JDialog dialog = new JDialog();
+    private void insert() {
 
-        dialog.getContentPane().add(new PersonEditView().getPanel());
-        dialog.pack();
-        dialog.setResizable(false);
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setVisible(true);
+    }
+
+    private void update() {
+
+    }
+
+    private void delete(Integer id) {
+        dao.remove(id);
     }
 }

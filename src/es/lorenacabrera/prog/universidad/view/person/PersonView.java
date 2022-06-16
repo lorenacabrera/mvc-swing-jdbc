@@ -5,12 +5,17 @@ import es.lorenacabrera.prog.universidad.dao.PersonDao;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PersonView extends JPanel {
+public class PersonView extends JPanel implements ActionListener {
     private PersonController controller;
 
     private JTable table;
     private JScrollPane scrollPane;
+    private JDialog dialog;
+
+    public static final String SHOW_EDIT_DIALOG_STRING = "show-edit-dialog";
 
     public PersonView(PersonController controller) {
         this.controller = controller;
@@ -43,27 +48,19 @@ public class PersonView extends JPanel {
 
         scrollPane = new JScrollPane();
         table = new JTable(new PersonTableModel(dao.findAll(), columnNames));
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.setFillsViewportHeight(true);
         scrollPane.setViewportView(this.table);
+        scrollPane.setVisible(true);
 
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridwidth = 8;
-        constraints.gridheight = GridBagConstraints.RELATIVE;
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.weightx = 1;
-        constraints.weighty = 1;
-//        add(scrollPane, constraints);
         add(scrollPane, BorderLayout.CENTER);
+        add(new PersonToolbarView(controller).getPanel(), BorderLayout.LINE_END);
+    }
 
-        constraints.gridx = 8;
-        constraints.gridy = 0;
-        constraints.gridwidth = 4;
-        constraints.gridheight = 1;
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.weightx = 0;
-        constraints.weighty = 0;
-//        add(new PersonToolbarView(controller), constraints);
-        add(new PersonToolbarView(controller), BorderLayout.LINE_END);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            default:
+                System.err.println("Fuck!");
+        }
     }
 }

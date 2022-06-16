@@ -5,8 +5,10 @@ import es.lorenacabrera.prog.universidad.controller.PersonController;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PersonEditView {
+public class PersonEditView implements ActionListener {
     private JPanel panel;
     private PersonController controller;
 
@@ -48,12 +50,12 @@ public class PersonEditView {
     private JButton saveButton;
     private JButton cancelButton;
 
-    private static final String SAVE_STRING = "save";
-    private static final String CANCEL_STRING = "cancel";
+    public static final String INSERT_STRING = "save";
+    public static final String CLOSE_EDIT_DIALOG = "cancel";
 
-    public PersonEditView() {
+    public PersonEditView(PersonController controller) {
         panel = new JPanel();
-
+        this.controller = controller;
         addComponentsToPane();
     }
 
@@ -89,13 +91,13 @@ public class PersonEditView {
         tipoLabel = new JLabel(TIPO_STRING);
         tipoTextField = new JTextField(COLUMNS_QUANTITY);
 
-        saveButton = new JButton(SAVE_STRING);
+        saveButton = new JButton(INSERT_STRING);
         saveButton.addActionListener(controller);
-        saveButton.setActionCommand(SAVE_STRING);
+        saveButton.setActionCommand(INSERT_STRING);
 
-        cancelButton = new JButton(CANCEL_STRING);
-        cancelButton.addActionListener(controller);
-        cancelButton.setActionCommand(CANCEL_STRING);
+        cancelButton = new JButton(CLOSE_EDIT_DIALOG);
+        cancelButton.addActionListener(this);
+        cancelButton.setActionCommand(CLOSE_EDIT_DIALOG);
 
         this.panel.add(idLabel);
         this.panel.add(idTextField);
@@ -122,5 +124,16 @@ public class PersonEditView {
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case CLOSE_EDIT_DIALOG:
+                Component parent = this.panel.getParent();
+                break;
+            default:
+                System.err.println("Fuck!");
+        }
     }
 }
