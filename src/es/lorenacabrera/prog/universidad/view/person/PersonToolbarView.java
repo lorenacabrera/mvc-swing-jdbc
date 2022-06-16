@@ -15,7 +15,7 @@ public class PersonToolbarView implements ActionListener {
     public static final String DELETE_BUTTON_NAME = "delete";
     public static final String SHOW_UPDATE_DIALOG = "show-update-dialog";
 
-   ; private JButton insertButton;
+    private JButton insertButton;
     private JButton deleteButton;
     private JButton updateButton;
 
@@ -49,9 +49,8 @@ public class PersonToolbarView implements ActionListener {
     }
 
     private void createAndShowPersonEditGUI() {
-        this.dialog = new JDialog();
-
-        dialog.getContentPane().add(new PersonEditView(controller).getPanel());
+        PersonEditView personEditView = new PersonEditView(controller);
+        this.dialog = personEditView.getDialog();
         dialog.pack();
         dialog.setResizable(false);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

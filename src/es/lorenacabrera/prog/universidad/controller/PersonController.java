@@ -1,6 +1,7 @@
 package es.lorenacabrera.prog.universidad.controller;
 
 import es.lorenacabrera.prog.universidad.dao.PersonDao;
+import es.lorenacabrera.prog.universidad.model.Person;
 import es.lorenacabrera.prog.universidad.view.person.PersonEditView;
 import es.lorenacabrera.prog.universidad.view.person.PersonToolbarView;
 
@@ -24,21 +25,19 @@ public class PersonController implements ActionListener {
             case PersonToolbarView.SHOW_UPDATE_DIALOG:
                 System.out.println("Fuck update!");
                 break;
-            case PersonEditView.CLOSE_EDIT_DIALOG:
-                if (this.dialog.isActive()) {
-                    this.dialog.dispose();
-                }
+            case PersonEditView.CLOSE_EDIT_DIALOG_STRING:
+                break;
             default:
                 System.out.println("Fuck!");
         }
     }
 
-    private void insert() {
-
+    public void insert(Person person) {
+        dao.insert(person);
     }
 
-    private void update() {
-
+    private void update(Person person) {
+        dao.update(person);
     }
 
     private void delete(Integer id) {

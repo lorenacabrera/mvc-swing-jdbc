@@ -1,6 +1,7 @@
 package es.lorenacabrera.prog.universidad.view.person;
 
 import es.lorenacabrera.prog.universidad.controller.PersonController;
+import es.lorenacabrera.prog.universidad.model.Person;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PersonEditView implements ActionListener {
+    private JDialog dialog;
     private JPanel panel;
     private PersonController controller;
 
@@ -39,7 +41,7 @@ public class PersonEditView implements ActionListener {
     private static final String NOMBRE_STRING = "nombre";
     private static final String APELLIDO_1_STRING = "apellido 1";
     private static final String APELLIDO_2_STRING = "apellido 2";
-    private static final String CIUDAD_TEXTFIELD = "ciudad";
+    private static final String CIUDAD_STRING = "ciudad";
     private static final String DIRECCION_STRING = "direccion";
     private static final String FECHA_NACIMIENTO_STRING = "fecha nacimiento";
     private static final String SEXO_STRING = "sexo";
@@ -51,9 +53,10 @@ public class PersonEditView implements ActionListener {
     private JButton cancelButton;
 
     public static final String INSERT_STRING = "save";
-    public static final String CLOSE_EDIT_DIALOG = "cancel";
+    public static final String CLOSE_EDIT_DIALOG_STRING = "close-edit-dialog";
 
     public PersonEditView(PersonController controller) {
+        dialog = new JDialog();
         panel = new JPanel();
         this.controller = controller;
         addComponentsToPane();
@@ -76,7 +79,7 @@ public class PersonEditView implements ActionListener {
         apellido2Label = new JLabel(APELLIDO_2_STRING);
         apellido2TextField = new JTextField(COLUMNS_QUANTITY);
 
-        ciudadLabel = new JLabel(CIUDAD_TEXTFIELD);
+        ciudadLabel = new JLabel(CIUDAD_STRING);
         ciudadTextField = new JTextField(COLUMNS_QUANTITY);
 
         direccionLabel = new JLabel(DIRECCION_STRING);
@@ -92,12 +95,12 @@ public class PersonEditView implements ActionListener {
         tipoTextField = new JTextField(COLUMNS_QUANTITY);
 
         saveButton = new JButton(INSERT_STRING);
-        saveButton.addActionListener(controller);
+        saveButton.addActionListener(this);
         saveButton.setActionCommand(INSERT_STRING);
 
-        cancelButton = new JButton(CLOSE_EDIT_DIALOG);
+        cancelButton = new JButton(CLOSE_EDIT_DIALOG_STRING);
         cancelButton.addActionListener(this);
-        cancelButton.setActionCommand(CLOSE_EDIT_DIALOG);
+        cancelButton.setActionCommand(CLOSE_EDIT_DIALOG_STRING);
 
         this.panel.add(idLabel);
         this.panel.add(idTextField);
@@ -120,20 +123,45 @@ public class PersonEditView implements ActionListener {
 
         this.panel.add(saveButton);
         this.panel.add(cancelButton);
+
+        this.dialog.add(panel);
     }
 
-    public JPanel getPanel() {
-        return panel;
+    public JDialog getDialog() {
+        return dialog;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Person person;
+
         switch (e.getActionCommand()) {
-            case CLOSE_EDIT_DIALOG:
-                Component parent = this.panel.getParent();
+            case CLOSE_EDIT_DIALOG_STRING:
+                if (this.dialog.isActive()) {
+                    this.getDialog().dispose();
+                }
+                break;
+            case INSERT_STRING:
+                person = new Person();
+
+                person.setId(Integer.parseUnsignedInt(idTextField.getText()));
+                person.setNombre(nombreTextField.getText());
+                person.setApellido1(apellido1TextField.getText());
+                person.setApellido2(apellido2TextField.getText());
+                person.setCiudad(ciudadTextField.getText());
+                person.setDireccion(direccionTextField.getText());
+                person.setSexo(sexoTextField.getText());
+                person.setTipo(tipoTextField.getText());
+
+                controller.insert(person);
+
+                if (this.dialog.isActive()) {
+                    this.dialog.dispose();
+                }
+
                 break;
             default:
-                System.err.println("Fuck!");
+                break;
         }
     }
 }
