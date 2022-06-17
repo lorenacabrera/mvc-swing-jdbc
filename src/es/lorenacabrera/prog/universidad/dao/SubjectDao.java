@@ -32,7 +32,7 @@ public class SubjectDao {
                 subject.setCurso(resultSet.getInt("curso"));
                 subject.setCustrimestre(resultSet.getInt("cuatrimestre"));
                 subject.setProfesorId(resultSet.getInt("id_profesor"));
-                subject.setGradoId(resultSet.getInt("grado_id"));
+                subject.setGradoId(resultSet.getInt("id_grado"));
 
                 subjects.add(subject);
             }

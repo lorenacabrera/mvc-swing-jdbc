@@ -3,13 +3,13 @@ package es.lorenacabrera.prog.universidad.model;
 import java.math.BigDecimal;
 
 public class Subject {
+    private Integer id;
     private String nombre;
     private String tipo;
     private Integer curso;
     private Integer custrimestre;
     private Integer profesorId;
     private Integer gradoId;
-    private Integer id;
     private BigDecimal credito;
 
     public Subject() {
